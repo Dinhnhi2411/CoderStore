@@ -1,70 +1,196 @@
-# Getting Started with Create React App
+# Coder-store-FE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Background
 
-## Available Scripts
+- MeSpace is a social network that allows people to join by creating accounts. Each User should provide a name, an email and a password to create an account.
 
-In the project directory, you can run:
+- The email address should not link to any account in the system. After joining MySpace, users can update their profile into like Avatar, Company , Job Title, Social Links and a short description about themselves.
 
-### `npm start`
+- Users can write Posts that contain text content and an image. The new posts will be shown on the user profile page, allowing other users to comment. Users can also React with like or dislike on a post or a Comment
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Users can send Friend Requests to other users who have an open relationship with them. Users can accept or decline a friend request. After accepting a friend request, both become friends and they can see posts of each other
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Authentication
 
-### `npm test`
+- As a user I can sign in. with my email and password.
+- As a user, I can register for a new account, email, password.
+- As a user, I can stay signed in with refreshing page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Users
 
-### `npm run build`
+- As a user, I can see a list of other users do taht I can send, accept or decline friend requests.
+- As a user, I can get my current profile info (stay isgned in after page refresh)
+- As a user, I can see the profile of a specific user given a user ID.
+- As a user, I can update my profile into like Avatar, Company, Job Title, Social Links and short description.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Posts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- As a user, I can see a list of posts
+- As a user, I can create a new post with text content and an image.
+- As a user, I can edit my posts
+- As a user, I can delere my posts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Comments
 
-### `npm run eject`
+- As a user, I can see a list of comments on a post
+- As a user, I can write comments on a post
+- As a user, I can update my comments
+- As a user, I can delete my comments
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Reactions
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- As a user, I can react like or dislike to a post or a comment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Friends
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- As a user, I can send a friend request to another user who is not my friend.
+- As a user, I can see a list of frinds requer I have received
+- As a user, I can see a list of my friends.
+- As a user, I can accpet or decline a freidn request.
+- As a user, I can cancel a friend request I sent
+- As a user, I can unfriend a suer in my friend list.
 
-## Learn More
+## API endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Auth APIs
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```javascript
+- @route POST /auth/login
+- @description Log in with username and password
+- @body {email, passsword}
+- @access Public
+```
 
-### Code Splitting
+### Friend APIs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```javascript
+- @route GET /friends/requests/incoming
+- @description Get the list of received pending requests
+- @access Login required
+```
 
-### Analyzing the Bundle Size
+```javascript
+- @route GET /friends/requests/outgoing
+- @description Get the list of sent pending requests
+- @access Login required
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- @route GET /friends/
+- @description Get the list of friends
+- @access Login required
 
-### Making a Progressive Web App
+- @route POST /friends/requests
+- @description Send a friend request
+- @body {to : User ID}
+- @access Login required
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- @route PUT /friends/requests/:userId
+- @description Accept/Reject a received pending requests
+- @body {status : 'accepted' or 'declined'}
+- @access Login required
 
-### Advanced Configuration
+- @route DELETE /friends/requests/:userId
+- @description cancel a friend request
+- @access Login required
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- @route DELETE /friends/:userId
+- @description remove a friend
+- @access Login required
 
-### Deployment
+### User APIs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- @route GET /users/page=1?&limit=10
+- @description Get user with pagination
+- @body
+- @access Login required
 
-### `npm run build` fails to minify
+- @route GET /users/me
+- @description Get current user info
+- @body
+- @access Login required
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- @route GET /users/:id
+- @description Get user profile
+- @body
+- @access LOgin required
+
+- @route POST /users
+- @description Register new user
+- @body {name, email, password}
+- @access Public
+
+- @route PUT /users/:id
+- @description Update user profile
+- @body {name, avarta,cover,aboutMe,city country, company, jobtitle, fblinl, iglink, linkLink, twiiLink}
+- @access Login required
+
+### Post APIs
+
+- @route GET /posts/:id/comments
+- @description Get comments of a post
+- @body
+- @access Login required
+
+- @route GET /posts/:id
+- @description Get a single post
+- @body
+- @access Login required
+
+- @route POST /posts
+- @description Create a new post
+- @body {content, image}
+- @access Login reuqired
+
+- @route PUT /posts/user/userId? page=1&limit=10
+- @description Get all posts an user can see with pagination
+- @body
+- @access Login required
+
+- @route PUT /posts/:id
+- @description Update a post
+- @body {content, image}
+- @access Login required
+
+- @route DELETE /posts/:id
+- @description Delete a post
+- @body
+- @access Login required
+
+### Comment APIs
+
+- @route GET /comments/:id
+- @description Get details of a comment
+- @body
+- @access Login required
+
+- @route POST /comments
+- @description Create a new comment
+- @body {content, postId}
+- @access Login required
+
+- @route PUT /comment:id
+- @description Update a comment
+- @body
+- @access Login required
+
+- @route DELETE comments/:id
+- @description Delete a comment
+- @body
+- @access Login required
+
+- @route DELETE /comments/:id
+- @description Delete a comment
+- @body
+- @access Login required
+
+### Reaction APIs
+
+- @route
+- @description
+- @body
+- @access Login required
+
+- @route
+- @description
+- @body
+- @access Login required
