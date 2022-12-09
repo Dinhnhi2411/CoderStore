@@ -55,133 +55,145 @@
 ### Auth APIs
 
 ```javascript
-- @route POST /auth/login
-- @description Log in with username and password
-- @body {email, passsword}
-- @access Public
+@route POST /auth/login
+@description Log in with username and password
+@body {email, passsword}
+@access Public
 ```
 
 ### Friend APIs
 
 ```javascript
-- @route GET /friends/requests/incoming
-- @description Get the list of received pending requests
-- @access Login required
+@route GET /friends/requests/incoming
+@description Get the list of received pending requests
+@access Login required
 ```
 
 ```javascript
-- @route GET /friends/requests/outgoing
-- @description Get the list of sent pending requests
-- @access Login required
+@route GET /friends/requests/outgoing
+@description Get the list of sent pending requests
+@access Login required
 ```
 
-- @route GET /friends/
-- @description Get the list of friends
-- @access Login required
+```javascript
+@route GET /friends/
+@description Get the list of friends
+@access Login required
+```
 
-- @route POST /friends/requests
-- @description Send a friend request
-- @body {to : User ID}
-- @access Login required
+```javascript
+@route POST /friends/requests
+@description Send a friend request
+@body {to : User ID}
+@access Login required
+```
 
-- @route PUT /friends/requests/:userId
-- @description Accept/Reject a received pending requests
-- @body {status : 'accepted' or 'declined'}
-- @access Login required
+```javascript
+@route PUT /friends/requests/:userId
+@description Accept/Reject a received pending requests
+@body {status : 'accepted' or 'declined'}
+@access Login required
+```
 
-- @route DELETE /friends/requests/:userId
-- @description cancel a friend request
-- @access Login required
+```javascript
+@route DELETE /friends/requests/:userId
+@description cancel a friend request
+@access Login required
+```
 
-- @route DELETE /friends/:userId
-- @description remove a friend
-- @access Login required
+```javascript
+@route DELETE /friends/:userId
+@description remove a friend
+@access Login required
+```
 
 ### User APIs
 
-- @route GET /users/page=1?&limit=10
-- @description Get user with pagination
-- @body
-- @access Login required
+```javascript
+@route GET /users/page=1?&limit=10
+@description Get user with pagination
+@body
+@access Login required
+```
 
-- @route GET /users/me
-- @description Get current user info
-- @body
-- @access Login required
+@route GET /users/me
+@description Get current user info
+@body
+@access Login required
 
-- @route GET /users/:id
-- @description Get user profile
-- @body
-- @access LOgin required
+@route GET /users/:id
+@description Get user profile
+@body
+@access LOgin required
 
-- @route POST /users
-- @description Register new user
-- @body {name, email, password}
-- @access Public
+@route POST /users
+@description Register new user
+@body {name, email, password}
+@access Public
 
-- @route PUT /users/:id
-- @description Update user profile
-- @body {name, avarta,cover,aboutMe,city country, company, jobtitle, fblinl, iglink, linkLink, twiiLink}
-- @access Login required
+@route PUT /users/:id
+@description Update user profile
+@body {name, avarta,cover,aboutMe,city country, company, jobtitle, fblinl, iglink, linkLink, twiiLink}
+@access Login required
 
 ### Post APIs
 
-- @route GET /posts/:id/comments
-- @description Get comments of a post
-- @body
-- @access Login required
+@route GET /posts/:id/comments
+@description Get comments of a post
+@body
+@access Login required
 
-- @route GET /posts/:id
-- @description Get a single post
-- @body
-- @access Login required
+@route GET /posts/:id
+@description Get a single post
+@body
+@access Login required
 
-- @route POST /posts
-- @description Create a new post
-- @body {content, image}
-- @access Login reuqired
+@route POST /posts
+@description Create a new post
+@body {content, image}
+@access Login reuqired
 
-- @route PUT /posts/user/userId? page=1&limit=10
-- @description Get all posts an user can see with pagination
-- @body
-- @access Login required
+@route PUT /posts/user/userId? page=1&limit=10
+@description Get all posts an user can see with pagination
+@body
+@access Login required
 
-- @route PUT /posts/:id
-- @description Update a post
-- @body {content, image}
-- @access Login required
+@route PUT /posts/:id
+@description Update a post
+@body {content, image}
+@access Login required
 
-- @route DELETE /posts/:id
-- @description Delete a post
-- @body
-- @access Login required
+@route DELETE /posts/:id
+@description Delete a post
+@body
+@access Login required
 
 ### Comment APIs
 
-- @route GET /comments/:id
-- @description Get details of a comment
-- @body
-- @access Login required
+@route GET /comments/:id
+@description Get details of a comment
+@body
+@access Login required
 
-- @route POST /comments
-- @description Create a new comment
-- @body {content, postId}
-- @access Login required
+@route POST /comments
+@description Create a new comment
+@body {content, postId}
+@access Login required
 
-- @route PUT /comment:id
-- @description Update a comment
-- @body
-- @access Login required
+@route PUT /comment:id
+@description Update a comment
+@body
+@access Login required
 
-- @route DELETE comments/:id
-- @description Delete a comment
-- @body
-- @access Login required
+@route DELETE comments/:id
+@description Delete a comment
+@body
+@access Login required
 
-- @route DELETE /comments/:id
-- @description Delete a comment
-- @body
-- @access Login required
+@route DELETE /comments/:id
+@description Delete a comment
+@body
+@access Login required
 
 ### Reaction APIs
 
